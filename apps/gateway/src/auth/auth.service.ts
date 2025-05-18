@@ -19,13 +19,13 @@ export class AuthService {
             .pipe(
               timeout(3000),
               catchError(err => {
-                this.logger.error(`Health check failed: ${err.message}`);
+                this.logger.error(`Health check failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
                 throw new ServiceUnavailableException('Authentication service is unavailable');
               })
             )
         );
       } catch (error) {
-        this.logger.error(`Authentication service health check failed: ${error.message}`);
+        this.logger.error(`Authentication service health check failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         throw new ServiceUnavailableException('Authentication service is unavailable');
       }
 
@@ -45,7 +45,7 @@ export class AuthService {
           )
       );
     } catch (error) {
-      this.logger.error(`Failed to register user: ${error.message}`);
+      this.logger.error(`Failed to register user: ${error instanceof Error ? error.message : 'Unknown error'}`);
       if (error instanceof ServiceUnavailableException) {
         throw error;
       }
@@ -62,13 +62,13 @@ export class AuthService {
             .pipe(
               timeout(3000),
               catchError(err => {
-                this.logger.error(`Health check failed: ${err.message}`);
+                this.logger.error(`Health check failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
                 throw new ServiceUnavailableException('Authentication service is unavailable');
               })
             )
         );
       } catch (error) {
-        this.logger.error(`Authentication service health check failed: ${error.message}`);
+        this.logger.error(`Authentication service health check failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         throw new ServiceUnavailableException('Authentication service is unavailable');
       }
 
@@ -87,7 +87,7 @@ export class AuthService {
           )
       );
     } catch (error) {
-      this.logger.error(`Failed to get users: ${error.message}`);
+      this.logger.error(`Failed to get users: ${error instanceof Error ? error.message : 'Unknown error'}`);
       if (error instanceof ServiceUnavailableException) {
         throw error;
       }

@@ -24,7 +24,7 @@ export class AuthenticationService {
       this.logger.log('MongoDB connection successful');
       this.useInMemoryStore = false;
     } catch (error) {
-      this.logger.error(`MongoDB connection failed: ${error.message}. Using in-memory store as fallback.`);
+      this.logger.error(`MongoDB connection failed: ${error instanceof Error ? error.message : 'Unknown error'}. Using in-memory store as fallback.`);
       this.useInMemoryStore = true;
     }
   }
@@ -87,8 +87,8 @@ export class AuthenticationService {
         return savedUser;
       }
     } catch (error) {
-      this.logger.error(`Failed to register user: ${error.message}`);
-      throw new InternalServerErrorException(`Failed to register user: ${error.message}`);
+      this.logger.error(`Failed to register user: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new InternalServerErrorException(`Failed to register user: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
@@ -118,8 +118,8 @@ export class AuthenticationService {
         });
       }
     } catch (error) {
-      this.logger.error(`Failed to get users: ${error.message}`);
-      throw new InternalServerErrorException(`Failed to get users: ${error.message}`);
+      this.logger.error(`Failed to get users: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new InternalServerErrorException(`Failed to get users: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 } 
