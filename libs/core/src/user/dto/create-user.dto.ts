@@ -12,7 +12,7 @@ export class CreateUserDto {
 
   @ApiProperty({
     description: 'The username of the user',
-    example: 'john_doe',
+    example: 'arian',
   })
   @IsNotEmpty({ message: 'Username is required' })
   @Matches(/^[a-zA-Z0-9_-]+$/, { message: 'Username can only contain letters, numbers, underscores and hyphens' })

@@ -24,7 +24,7 @@ export class User {
 
   @ApiProperty({
     description: 'The username of the user',
-    example: 'john_doe',
+    example: 'arian',
   })
   @Prop({ required: true })
   username: string;
